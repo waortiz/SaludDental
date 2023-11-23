@@ -52,29 +52,96 @@ namespace SaludDental
                        rdbMasculino.Checked ? "Masculino" :
                        rdbNoBinario.Checked ? "No Binario" : "";
             var titular = chkTitular.Checked;
-            var salario = Convert.ToDecimal(txtSalario.Text);
-
-            var datos = @"Primer Nombre: " + primerNombre +
-                         "Segundo Nombre: " + segundoNombre +
-                         "Primer Apellido: " + primerApellido +
-                         "Segundo Apellido: " + segundoApellido +
-                         "Tipo Documento: " + tipoDocumento +
-                         "Fecha Nacimiento: " + fechaNacimiento +
-                         "Teléfono: " + telefono +
-                         "Dirección: " + direccion +
-                         "Departamento: " + departamento +
-                         "Ciudad: " + ciudad +
-                         "Sexo: " + sexo +
-                         "Titular: " + titular +
-                         "Salario: " + salario;
-            MessageBox.Show(datos, "Datos Paciente", 
-                MessageBoxButtons.OK);
+            var salario = 0M;
 
             //TODO: 2. Validar los datos del formulario
+            if(primerNombre.Trim() == "")
+            {
+                MessageBox.Show("El primer nombre no debe estar vacío", 
+                    this.Text, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(primerApellido.Trim()))
+            {
+                MessageBox.Show("El primer apellido no debe estar vacío",
+                   this.Text,
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(tipoDocumento))
+            {
+                MessageBox.Show("Debe seleccionar un tipo documento",
+                  this.Text,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return;
+            }
+            if (fechaNacimiento > DateTime.Now)
+            {
+                MessageBox.Show("La fecha de nacimiento no debe ser mayor a la fecha actual",
+                  this.Text,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return;
+            }
 
+            if (telefono.Trim() == string.Empty)
+            {
+                MessageBox.Show("El teléfono no debe estar vacío",
+                  this.Text,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return;
+            }
+            if (direccion.Trim() == string.Empty)
+            {
+                MessageBox.Show("La dirección no debe estar vacía",
+                  this.Text,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return;
+            }
+            if (!rdbFemenino.Checked && rdbMasculino.Checked && !rdbNoBinario.Checked)
+            {
+                MessageBox.Show("El sexo no es válido",
+                  this.Text,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(txtSalario.Text))
+            {
+                MessageBox.Show("El salario no debe estar vacío",
+                  this.Text,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                salario = Convert.ToDecimal(txtSalario.Text);
+            }
             //TODO: 3. Guardar los datos del formulario en un repositorio
 
             //TODO: 4. Mostrar mensaje de confirmación/negación de la operación
+            var datos = @"Primer Nombre: " + primerNombre +
+                             "Segundo Nombre: " + segundoNombre +
+                             "Primer Apellido: " + primerApellido +
+                             "Segundo Apellido: " + segundoApellido +
+                             "Tipo Documento: " + tipoDocumento +
+                             "Fecha Nacimiento: " + fechaNacimiento +
+                             "Teléfono: " + telefono +
+                             "Dirección: " + direccion +
+                             "Departamento: " + departamento +
+                             "Ciudad: " + ciudad +
+                             "Sexo: " + sexo +
+                             "Titular: " + titular +
+                             "Salario: " + salario;
+            MessageBox.Show(datos, "Datos Paciente",
+                MessageBoxButtons.OK);
         }
 
         /// <summary>
