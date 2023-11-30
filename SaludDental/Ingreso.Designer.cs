@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ingreso));
             this.btnIngresar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -37,8 +38,11 @@
             this.txtClave = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.erpMensaje = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
             this.gbDatosIngreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpMensaje)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIngresar
@@ -105,6 +109,7 @@
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(268, 23);
             this.txtClave.TabIndex = 7;
+            this.ttMensaje.SetToolTip(this.txtClave, "Contraseña");
             // 
             // txtUsuario
             // 
@@ -112,6 +117,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(268, 23);
             this.txtUsuario.TabIndex = 5;
+            this.ttMensaje.SetToolTip(this.txtUsuario, "Nombre de usuario");
             // 
             // pictureBox1
             // 
@@ -122,6 +128,10 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            // 
+            // erpMensaje
+            // 
+            this.erpMensaje.ContainerControl = this;
             // 
             // Ingreso
             // 
@@ -142,6 +152,7 @@
             this.gbDatosIngreso.ResumeLayout(false);
             this.gbDatosIngreso.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpMensaje)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,5 +167,7 @@
         private TextBox txtClave;
         private TextBox txtUsuario;
         private PictureBox pictureBox1;
+        private ErrorProvider erpMensaje;
+        private ToolTip ttMensaje;
     }
 }

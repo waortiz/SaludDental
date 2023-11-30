@@ -12,6 +12,19 @@ namespace SaludDental
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            erpMensaje.SetError(txtUsuario, null);
+            erpMensaje.SetError(txtClave, null);
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                erpMensaje.SetError(txtUsuario, "Por favor ingresa el nombre de usuario");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtClave.Text))
+            {
+                erpMensaje.SetError(txtClave, "Por favor ingresa la contraseña");
+                return;
+            }
+
             if (txtUsuario.Text == USUARIO && txtClave.Text == CLAVE)
             {
                 var principal = new MDIPrincipal();

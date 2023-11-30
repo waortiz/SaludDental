@@ -31,6 +31,8 @@
             this.tbDatosPaciente = new System.Windows.Forms.TabControl();
             this.tbDatosBasicos = new System.Windows.Forms.TabPage();
             this.gbOtrosDatosBasicos = new System.Windows.Forms.GroupBox();
+            this.txtSalario = new System.Windows.Forms.TextBox();
+            this.lblSalario = new System.Windows.Forms.Label();
             this.lblTitular = new System.Windows.Forms.Label();
             this.chkTitular = new System.Windows.Forms.CheckBox();
             this.lblSexo = new System.Windows.Forms.Label();
@@ -66,8 +68,6 @@
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.txtSalario = new System.Windows.Forms.TextBox();
-            this.lblSalario = new System.Windows.Forms.Label();
             this.tbDatosPaciente.SuspendLayout();
             this.tbDatosBasicos.SuspendLayout();
             this.gbOtrosDatosBasicos.SuspendLayout();
@@ -119,6 +119,24 @@
             this.gbOtrosDatosBasicos.Size = new System.Drawing.Size(761, 257);
             this.gbOtrosDatosBasicos.TabIndex = 1;
             this.gbOtrosDatosBasicos.TabStop = false;
+            // 
+            // txtSalario
+            // 
+            this.txtSalario.Location = new System.Drawing.Point(187, 214);
+            this.txtSalario.MaxLength = 100;
+            this.txtSalario.Name = "txtSalario";
+            this.txtSalario.Size = new System.Drawing.Size(436, 23);
+            this.txtSalario.TabIndex = 13;
+            this.txtSalario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSalario_KeyPress);
+            // 
+            // lblSalario
+            // 
+            this.lblSalario.AutoSize = true;
+            this.lblSalario.Location = new System.Drawing.Point(31, 213);
+            this.lblSalario.Name = "lblSalario";
+            this.lblSalario.Size = new System.Drawing.Size(42, 15);
+            this.lblSalario.TabIndex = 12;
+            this.lblSalario.Text = "Salario";
             // 
             // lblTitular
             // 
@@ -328,7 +346,7 @@
             this.tbDatosContacto.Location = new System.Drawing.Point(4, 24);
             this.tbDatosContacto.Name = "tbDatosContacto";
             this.tbDatosContacto.Padding = new System.Windows.Forms.Padding(3);
-            this.tbDatosContacto.Size = new System.Drawing.Size(768, 438);
+            this.tbDatosContacto.Size = new System.Drawing.Size(768, 469);
             this.tbDatosContacto.TabIndex = 1;
             this.tbDatosContacto.Text = "Datos de Contacto";
             this.tbDatosContacto.UseVisualStyleBackColor = true;
@@ -459,23 +477,6 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // txtSalario
-            // 
-            this.txtSalario.Location = new System.Drawing.Point(187, 214);
-            this.txtSalario.MaxLength = 100;
-            this.txtSalario.Name = "txtSalario";
-            this.txtSalario.Size = new System.Drawing.Size(436, 23);
-            this.txtSalario.TabIndex = 13;
-            // 
-            // lblSalario
-            // 
-            this.lblSalario.AutoSize = true;
-            this.lblSalario.Location = new System.Drawing.Point(31, 213);
-            this.lblSalario.Name = "lblSalario";
-            this.lblSalario.Size = new System.Drawing.Size(42, 15);
-            this.lblSalario.TabIndex = 12;
-            this.lblSalario.Text = "Salario";
             // 
             // DatosPaciente
             // 
