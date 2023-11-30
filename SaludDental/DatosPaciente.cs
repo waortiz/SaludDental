@@ -33,50 +33,63 @@ namespace SaludDental
         /// <remarks></remarks>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //TODO: 1. Recuperar los datos del formulario
-            /*
-             En este paso asignamos los valores de los controles a 
-             variables locales
-             */
-            var primerNombre = txtPrimerNombre.Text;
-            dynamic segundoNombre = txtSegundoNombre.Text;
-            string primerApellido = txtPrimerApellido.Text;
-            String segundoApellido = txtSegundoApellido.Text;
-            var tipoDocumento = cboTiposDocumento.SelectedItem as string;
-            DateTime fechaNacimiento = dtpFechaNacimiento.Value;
-            string telefono = txtTelefono.Text;
-            string direccion = txtDireccion.Text;
-            var departamento = cboDepartamento.SelectedItem as string;
-            var ciudad = cboCiudad.SelectedItem as string;
-            var sexo = rdbFemenino.Checked ? "Femenino" :
-                       rdbMasculino.Checked ? "Masculino" :
-                       rdbNoBinario.Checked ? "No Binario" : "";
-            var titular = chkTitular.Checked;
-            var salario = 0M;
-
-            //TODO: 2. Validar los datos del formulario
-            if (ValidarDatos())
+            try
             {
-                //TODO: 3. Guardar los datos del formulario en un repositorio
+                //TODO: 1. Recuperar los datos del formulario
+                /*
+                 En este paso asignamos los valores de los controles a 
+                 variables locales
+                 */
+                var primerNombre = txtPrimerNombre.Text;
+                dynamic segundoNombre = txtSegundoNombre.Text;
+                string primerApellido = txtPrimerApellido.Text;
+                String segundoApellido = txtSegundoApellido.Text;
+                var tipoDocumento = cboTiposDocumento.SelectedItem as string;
+                DateTime fechaNacimiento = dtpFechaNacimiento.Value;
+                string telefono = txtTelefono.Text;
+                string direccion = txtDireccion.Text;
+                var departamento = cboDepartamento.SelectedItem as string;
+                var ciudad = cboCiudad.SelectedItem as string;
+                var sexo = rdbFemenino.Checked ? "Femenino" :
+                           rdbMasculino.Checked ? "Masculino" :
+                           rdbNoBinario.Checked ? "No Binario" : "";
+                var titular = chkTitular.Checked;
+                var salario = 0M;
 
-                //TODO: 4. Mostrar mensaje de confirmación/negación de la operación
-                var datos = @"Primer Nombre: " + primerNombre +
-                                 "Segundo Nombre: " + segundoNombre +
-                                 "Primer Apellido: " + primerApellido +
-                                 "Segundo Apellido: " + segundoApellido +
-                                 "Tipo Documento: " + tipoDocumento +
-                                 "Fecha Nacimiento: " + fechaNacimiento +
-                                 "Teléfono: " + telefono +
-                                 "Dirección: " + direccion +
-                                 "Departamento: " + departamento +
-                                 "Ciudad: " + ciudad +
-                                 "Sexo: " + sexo +
-                                 "Titular: " + titular +
-                                 "Salario: " + salario;
-                MessageBox.Show(datos, "Datos Paciente",
-                    MessageBoxButtons.OK);
+                //TODO: 2. Validar los datos del formulario
+                if (ValidarDatos())
+                {
+                    //TODO: 3. Guardar los datos del formulario en un repositorio
+
+                    //TODO: 4. Mostrar mensaje de confirmación/negación de la operación
+                    var datos = @"Primer Nombre: " + primerNombre +
+                                     "Segundo Nombre: " + segundoNombre +
+                                     "Primer Apellido: " + primerApellido +
+                                     "Segundo Apellido: " + segundoApellido +
+                                     "Tipo Documento: " + tipoDocumento +
+                                     "Fecha Nacimiento: " + fechaNacimiento +
+                                     "Teléfono: " + telefono +
+                                     "Dirección: " + direccion +
+                                     "Departamento: " + departamento +
+                                     "Ciudad: " + ciudad +
+                                     "Sexo: " + sexo +
+                                     "Titular: " + titular +
+                                     "Salario: " + salario;
+                    MessageBox.Show(datos, "Datos Paciente",
+                        MessageBoxButtons.OK);
+                }
+                else
+                {
+
+                }
             }
-            else
+            catch(Exception ex)
+            {
+                MessageBox.Show("Por favor sabes te queremos. Por ahora el sistema tiene dificultades. Volveremos pronto.  " +
+                    "El error presentado es: " + ex.Message,
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
             {
 
             }
@@ -206,9 +219,23 @@ namespace SaludDental
             if (caracter != '0' && caracter != '1' && caracter != '2' &&
                 caracter != '3' && caracter != '4' && caracter != '5' &&
                 caracter != '6' && caracter != '7' && caracter != '8' &&
-                caracter != '9')
+                caracter != '9' && (int)caracter != 8)
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtPrimerNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = e.KeyChar.ToString().ToUpper()[0];
+        }
+
+        private void txtCelular_Validating(object sender, CancelEventArgs e)
+        {
+            erpMensaje.SetError(txtCelular, null);
+            if (txtCelular.Text.Length == 0 || txtCelular.Text[0] != '3')
+            {
+                erpMensaje.SetError(txtCelular, "El número de celular debe empezar por 3");
             }
         }
     }

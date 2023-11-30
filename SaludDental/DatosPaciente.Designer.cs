@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbDatosPaciente = new System.Windows.Forms.TabControl();
             this.tbDatosBasicos = new System.Windows.Forms.TabPage();
             this.gbOtrosDatosBasicos = new System.Windows.Forms.GroupBox();
@@ -68,12 +69,15 @@
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.erpMensaje = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
             this.tbDatosPaciente.SuspendLayout();
             this.tbDatosBasicos.SuspendLayout();
             this.gbOtrosDatosBasicos.SuspendLayout();
             this.gbDatosBasicos.SuspendLayout();
             this.tbDatosContacto.SuspendLayout();
             this.gbDatosContacto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.erpMensaje)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDatosPaciente
@@ -330,6 +334,7 @@
             this.txtPrimerNombre.Name = "txtPrimerNombre";
             this.txtPrimerNombre.Size = new System.Drawing.Size(436, 23);
             this.txtPrimerNombre.TabIndex = 1;
+            this.txtPrimerNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrimerNombre_KeyPress);
             // 
             // lblPrimerNombre
             // 
@@ -382,7 +387,7 @@
             // cboCiudad
             // 
             this.cboCiudad.FormattingEnabled = true;
-            this.cboCiudad.Location = new System.Drawing.Point(192, 193);
+            this.cboCiudad.Location = new System.Drawing.Point(187, 198);
             this.cboCiudad.Name = "cboCiudad";
             this.cboCiudad.Size = new System.Drawing.Size(441, 23);
             this.cboCiudad.TabIndex = 7;
@@ -399,7 +404,7 @@
             // cboDepartamento
             // 
             this.cboDepartamento.FormattingEnabled = true;
-            this.cboDepartamento.Location = new System.Drawing.Point(192, 143);
+            this.cboDepartamento.Location = new System.Drawing.Point(187, 143);
             this.cboDepartamento.Name = "cboDepartamento";
             this.cboDepartamento.Size = new System.Drawing.Size(441, 23);
             this.cboDepartamento.TabIndex = 5;
@@ -407,7 +412,7 @@
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(18, 247);
+            this.lblDireccion.Location = new System.Drawing.Point(13, 247);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(57, 15);
             this.lblDireccion.TabIndex = 8;
@@ -415,7 +420,7 @@
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(192, 239);
+            this.txtDireccion.Location = new System.Drawing.Point(187, 239);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(446, 23);
             this.txtDireccion.TabIndex = 9;
@@ -435,6 +440,7 @@
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(446, 23);
             this.txtCelular.TabIndex = 3;
+            this.txtCelular.Validating += new System.ComponentModel.CancelEventHandler(this.txtCelular_Validating);
             // 
             // lblTelefono
             // 
@@ -478,6 +484,10 @@
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // erpMensaje
+            // 
+            this.erpMensaje.ContainerControl = this;
+            // 
             // DatosPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -500,6 +510,7 @@
             this.tbDatosContacto.ResumeLayout(false);
             this.gbDatosContacto.ResumeLayout(false);
             this.gbDatosContacto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.erpMensaje)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -546,5 +557,7 @@
         private Button btnGuardar;
         private TextBox txtSalario;
         private Label lblSalario;
+        private ErrorProvider erpMensaje;
+        private ToolTip ttMensaje;
     }
 }
