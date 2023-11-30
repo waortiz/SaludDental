@@ -62,19 +62,9 @@ namespace SaludDental
                     //TODO: 3. Guardar los datos del formulario en un repositorio
 
                     //TODO: 4. Mostrar mensaje de confirmación/negación de la operación
-                    var datos = @"Primer Nombre: " + primerNombre +
-                                     "Segundo Nombre: " + segundoNombre +
-                                     "Primer Apellido: " + primerApellido +
-                                     "Segundo Apellido: " + segundoApellido +
-                                     "Tipo Documento: " + tipoDocumento +
-                                     "Fecha Nacimiento: " + fechaNacimiento +
-                                     "Teléfono: " + telefono +
-                                     "Dirección: " + direccion +
-                                     "Departamento: " + departamento +
-                                     "Ciudad: " + ciudad +
-                                     "Sexo: " + sexo +
-                                     "Titular: " + titular +
-                                     "Salario: " + salario;
+                    salario = decimal.Parse(txtSalario.Text);
+                    var datos = @"Primer Nombre: " + primerNombre + "\n" + "Segundo Nombre: " + segundoNombre + "\n" + "Primer Apellido: " + primerApellido + "\n" + "Segundo Apellido: " + segundoApellido + "\n" + "Tipo Documento: " + tipoDocumento + "\n" + "Fecha Nacimiento: " + "\n" + fechaNacimiento.ToString("yyyy/MM/dd") + "Teléfono: " + telefono + "\n" + "Dirección: " + direccion + "\n" + "Departamento: " + departamento + "\n" + "Ciudad: " + ciudad + "\n" + "Sexo: " + sexo + "\n" + "Titular: " + titular + "\n" +
+                                     "Salario: " + salario.ToString("###,##");
                     MessageBox.Show(datos, "Datos Paciente",
                         MessageBoxButtons.OK);
                 }
@@ -166,7 +156,7 @@ namespace SaludDental
                   MessageBoxIcon.Error);
                 return false;
             }
-            if (!rdbFemenino.Checked && rdbMasculino.Checked && !rdbNoBinario.Checked)
+            if (!rdbFemenino.Checked && !rdbMasculino.Checked && !rdbNoBinario.Checked)
             {
                 MessageBox.Show("El sexo no es válido",
                   this.Text,
