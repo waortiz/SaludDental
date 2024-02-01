@@ -1,4 +1,4 @@
-﻿namespace SaludDental.Entidades
+﻿namespace Entidades
 {
     public class Persona
     {

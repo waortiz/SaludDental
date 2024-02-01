@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Entidades;
+using System.ComponentModel;
 
 namespace SaludDental
 {
@@ -32,6 +33,8 @@ namespace SaludDental
                  En este paso asignamos los valores de los controles a 
                  variables locales
                  */
+                Persona persona = new Persona();
+
                 var primerNombre = txtPrimerNombre.Text;
                 dynamic segundoNombre = txtSegundoNombre.Text;
                 string primerApellido = txtPrimerApellido.Text;
