@@ -1,4 +1,6 @@
 ﻿using Entidades;
+using Negocio;
+using Repositorio;
 using System.ComponentModel;
 
 namespace SaludDental
@@ -33,13 +35,13 @@ namespace SaludDental
                  En este paso asignamos los valores de los controles a 
                  variables locales
                  */
-                Persona persona = new Persona();
+                Paciente paciente = new Paciente();
 
                 var primerNombre = txtPrimerNombre.Text;
                 dynamic segundoNombre = txtSegundoNombre.Text;
                 string primerApellido = txtPrimerApellido.Text;
                 String segundoApellido = txtSegundoApellido.Text;
-                var tipoDocumento = cboTiposDocumento.SelectedItem as string;
+                var tipoDocumento = cboTiposDocumento.SelectedItem as TipoDocumento;
                 DateTime fechaNacimiento = dtpFechaNacimiento.Value;
                 string telefono = txtTelefono.Text;
                 string direccion = txtDireccion.Text;
@@ -58,6 +60,21 @@ namespace SaludDental
 
                     //TODO: 4. Mostrar mensaje de confirmación/negación de la operación
                     salario = decimal.Parse(txtSalario.Text);
+
+                    paciente.PrimerNombre = primerNombre;
+                    paciente.SegundoNombre = segundoNombre;
+                    paciente.PrimerApellido = primerApellido;
+                    paciente.SegundoApellido = segundoApellido;
+                    paciente.TipoDocumento = tipoDocumento;
+                    paciente.NumeroDocumento = txtNumeroDocumento.Text;
+
+                    IRepositorioPaciente repositorioPaciente = new RepositorioPaciente();
+                    INegocioPaciente negocioPaciente = new NegocioPaciente(repositorioPaciente);
+                    if (paciente.Id == 0)
+                        negocioPaciente.IngresarPaciente(paciente);
+                    else
+                        negocioPaciente.ActualizarPaciente(paciente);
+
                     var datos = @"Primer Nombre: " + primerNombre + "\n" + "Segundo Nombre: " + segundoNombre + "\n" + "Primer Apellido: " + primerApellido + "\n" + "Segundo Apellido: " + segundoApellido + "\n" + "Tipo Documento: " + tipoDocumento + "\n" + "Fecha Nacimiento: " + "\n" + fechaNacimiento.ToString("yyyy/MM/dd") + "Teléfono: " + telefono + "\n" + "Dirección: " + direccion + "\n" + "Departamento: " + departamento + "\n" + "Ciudad: " + ciudad + "\n" + "Sexo: " + sexo + "\n" + "Titular: " + titular + "\n" +
                                      "Salario: " + salario.ToString("###,##");
                     MessageBox.Show(datos, "Datos Paciente",
@@ -222,6 +239,13 @@ namespace SaludDental
             {
                 erpMensaje.SetError(txtCelular, "El número de celular debe empezar por 3");
             }
+        }
+
+        private void DatosPaciente_Load(object sender, EventArgs e)
+        {
+            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestro());
+            cboTiposDocumento.DataSource = negocio.ObtenerTiposDocumento();
+            cboTiposDocumento.DisplayMember = "Nombre";
         }
     }
 }

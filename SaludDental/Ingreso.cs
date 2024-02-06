@@ -1,10 +1,10 @@
+using Negocio;
+using Repositorio;
+
 namespace SaludDental
 {
     public partial class Ingreso : Form
     {
-        private const string USUARIO = "wortiz";
-        private const string CLAVE = "123";
-
         public Ingreso()
         {
             InitializeComponent();
@@ -25,7 +25,8 @@ namespace SaludDental
                 return;
             }
 
-            if (txtUsuario.Text == USUARIO && txtClave.Text == CLAVE)
+            INegocioUsuario negocio= new NegocioUsuario(new RepositorioSeguridad());
+            if (negocio.ValidarUsuario(txtUsuario.Text , txtClave.Text))
             {
                 var principal = new MDIPrincipal();
                 principal.Show();

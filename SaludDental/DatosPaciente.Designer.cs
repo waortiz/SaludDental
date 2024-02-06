@@ -501,6 +501,7 @@
             this.Name = "DatosPaciente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos Paciente";
+            this.Load += new System.EventHandler(this.DatosPaciente_Load);
             this.tbDatosPaciente.ResumeLayout(false);
             this.tbDatosBasicos.ResumeLayout(false);
             this.gbOtrosDatosBasicos.ResumeLayout(false);

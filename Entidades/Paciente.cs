@@ -1,6 +1,6 @@
 ﻿namespace Entidades
 {
-    public class Persona
+    public class Paciente
     {
         public int Id { get; set; }
         public string PrimerNombre { get; set; }
