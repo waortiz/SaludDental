@@ -15,6 +15,13 @@ namespace Negocio
         {
             this.repositorioMaestro = repositorioMaestro;
         }
+
+        public List<Ciudad> ObtenerCiudades(int idDepartamento)
+        => repositorioMaestro.ObtenerCiudades(idDepartamento);
+
+        public List<Departamento> ObtenerDepartamentos()
+        => repositorioMaestro.ObtenerDepartamentos();
+
         public List<TipoDocumento> ObtenerTiposDocumento()
         => repositorioMaestro.ObtenerTiposDocumento();
     }

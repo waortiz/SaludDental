@@ -224,10 +224,6 @@
             // 
             this.cboTiposDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTiposDocumento.FormattingEnabled = true;
-            this.cboTiposDocumento.Items.AddRange(new object[] {
-            "Cédula de Ciudadanía",
-            "Cédula de Extranjería",
-            "Tarjeta de Identidad"});
             this.cboTiposDocumento.Location = new System.Drawing.Point(187, 16);
             this.cboTiposDocumento.Name = "cboTiposDocumento";
             this.cboTiposDocumento.Size = new System.Drawing.Size(436, 23);
@@ -386,6 +382,7 @@
             // 
             // cboCiudad
             // 
+            this.cboCiudad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCiudad.FormattingEnabled = true;
             this.cboCiudad.Location = new System.Drawing.Point(187, 198);
             this.cboCiudad.Name = "cboCiudad";
@@ -403,11 +400,13 @@
             // 
             // cboDepartamento
             // 
+            this.cboDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDepartamento.FormattingEnabled = true;
             this.cboDepartamento.Location = new System.Drawing.Point(187, 143);
             this.cboDepartamento.Name = "cboDepartamento";
             this.cboDepartamento.Size = new System.Drawing.Size(441, 23);
             this.cboDepartamento.TabIndex = 5;
+            this.cboDepartamento.SelectedIndexChanged += new System.EventHandler(this.cboDepartamento_SelectedIndexChanged);
             // 
             // lblDireccion
             // 

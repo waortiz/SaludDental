@@ -107,7 +107,7 @@ namespace SaludDental
             dynamic segundoNombre = txtSegundoNombre.Text;
             string primerApellido = txtPrimerApellido.Text;
             String segundoApellido = txtSegundoApellido.Text;
-            var tipoDocumento = cboTiposDocumento.SelectedItem as string;
+            var tipoDocumento = cboTiposDocumento.SelectedItem as TipoDocumento;
             DateTime fechaNacimiento = dtpFechaNacimiento.Value;
             string telefono = txtTelefono.Text;
             string direccion = txtDireccion.Text;
@@ -135,8 +135,7 @@ namespace SaludDental
                    MessageBoxIcon.Error);
                 return false;
             }
-            if (string.IsNullOrEmpty(tipoDocumento))
-            {
+            if (tipoDocumento == null)            {
                 MessageBox.Show("Debe seleccionar un tipo documento",
                   this.Text,
                   MessageBoxButtons.OK,
@@ -244,8 +243,29 @@ namespace SaludDental
         private void DatosPaciente_Load(object sender, EventArgs e)
         {
             INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestro());
+
             cboTiposDocumento.DataSource = negocio.ObtenerTiposDocumento();
             cboTiposDocumento.DisplayMember = "Nombre";
+
+            cboDepartamento.DataSource = negocio.ObtenerDepartamentos();
+            cboDepartamento.DisplayMember = "Nombre";
+
+        }
+
+        private void cboDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestro());
+            var departamento = cboDepartamento.SelectedItem as Departamento;
+            if (cboDepartamento.SelectedItem != null)
+            {
+                cboCiudad.DataSource = negocio.ObtenerCiudades(departamento.Id);
+                cboCiudad.DisplayMember = "Nombre";
+            }
+            else
+            {
+                cboCiudad.DataSource = new List<Ciudad>();
+                cboCiudad.DisplayMember = "Nombre";
+            }
         }
     }
 }
