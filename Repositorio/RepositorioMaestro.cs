@@ -12,9 +12,8 @@ namespace Repositorio
         public List<Ciudad> ObtenerCiudades(int idDepartamento)
         {
             var departamentos = ObtenerDepartamentos();
-            var ciudades = departamentos.Where(d => d.Id == idDepartamento)
+            var ciudades = departamentos.FirstOrDefault(d => d.Id == idDepartamento)
                 .Select(d => d.Ciudades)
-                .FirstOrDefault()
                 .OrderBy(c => c.Nombre)
                 .ToList();
 
