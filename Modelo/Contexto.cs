@@ -19,7 +19,7 @@ namespace Modelo
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            //builder.UseSqlServer(ConfigurationManager.ConnectionStrings["SaludDental"].ConnectionString));
+            builder.UseSqlServer(ConfigurationManager.ConnectionStrings["SaludDental"].ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
