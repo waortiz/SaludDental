@@ -10,7 +10,7 @@ namespace Negocio
 {
     public class NegocioMaestro : INegocioMaestro
     {
-        IRepositorioMaestro repositorioMaestro = new RepositorioMaestro();
+        IRepositorioMaestro repositorioMaestro = new RepositorioMaestroADO();
         public NegocioMaestro(IRepositorioMaestro repositorioMaestro)
         {
             this.repositorioMaestro = repositorioMaestro;

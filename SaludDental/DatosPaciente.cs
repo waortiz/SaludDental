@@ -242,7 +242,7 @@ namespace SaludDental
 
         private void DatosPaciente_Load(object sender, EventArgs e)
         {
-            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestro());
+            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestroADO());
 
             cboTiposDocumento.DataSource = negocio.ObtenerTiposDocumento();
             cboTiposDocumento.DisplayMember = "Nombre";
@@ -254,7 +254,7 @@ namespace SaludDental
 
         private void cboDepartamento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestro());
+            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestroADO());
             var departamento = cboDepartamento.SelectedItem as Departamento;
             if (cboDepartamento.SelectedItem != null)
             {
