@@ -12,7 +12,8 @@
         public DateTime FechaNacimiento { get; set; }
         public bool Titular { get; set; }
         public string Telefono { get; set; }
-        public string Direcion { get; set; }
+        public string Celular { get; set; }
+        public string Direccion { get; set; }
         public decimal Salario { get; set; }
         public Ciudad Ciudad { get; set; }
         public Sexo Sexo { get; set; }

@@ -44,12 +44,13 @@ namespace SaludDental
                 var tipoDocumento = cboTiposDocumento.SelectedItem as TipoDocumento;
                 DateTime fechaNacimiento = dtpFechaNacimiento.Value;
                 string telefono = txtTelefono.Text;
+                string celular = txtCelular.Text;
                 string direccion = txtDireccion.Text;
                 var departamento = cboDepartamento.SelectedItem as string;
-                var ciudad = cboCiudad.SelectedItem as string;
-                var sexo = rdbFemenino.Checked ? "Femenino" :
-                           rdbMasculino.Checked ? "Masculino" :
-                           rdbNoBinario.Checked ? "No Binario" : "";
+                var ciudad = cboCiudad.SelectedItem as Ciudad;
+                var sexo = rdbFemenino.Checked ? 1 :
+                           rdbMasculino.Checked ? 2 :
+                           rdbNoBinario.Checked ? 3 : 1;
                 var titular = chkTitular.Checked;
                 var salario = 0M;
 
@@ -67,6 +68,13 @@ namespace SaludDental
                     paciente.SegundoApellido = segundoApellido;
                     paciente.TipoDocumento = tipoDocumento;
                     paciente.NumeroDocumento = txtNumeroDocumento.Text;
+                    paciente.Sexo = new Sexo() { Id = sexo };
+                    paciente.Direccion = direccion;
+                    paciente.Ciudad = ciudad;
+                    paciente.Celular = celular;
+                    paciente.Titular = titular;
+                    paciente.Telefono = telefono;
+
 
                     IRepositorioPaciente repositorioPaciente = new RepositorioPaciente();
                     INegocioPaciente negocioPaciente = new NegocioPaciente(repositorioPaciente);
@@ -85,7 +93,7 @@ namespace SaludDental
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Por favor sabes te queremos. Por ahora el sistema tiene dificultades. Volveremos pronto.  " +
                     "El error presentado es: " + ex.Message,
@@ -135,7 +143,8 @@ namespace SaludDental
                    MessageBoxIcon.Error);
                 return false;
             }
-            if (tipoDocumento == null)            {
+            if (tipoDocumento == null)
+            {
                 MessageBox.Show("Debe seleccionar un tipo documento",
                   this.Text,
                   MessageBoxButtons.OK,
@@ -242,7 +251,7 @@ namespace SaludDental
 
         private void DatosPaciente_Load(object sender, EventArgs e)
         {
-            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestroADO());
+            INegocioMaestro negocio = new NegocioMaestro();
 
             cboTiposDocumento.DataSource = negocio.ObtenerTiposDocumento();
             cboTiposDocumento.DisplayMember = "Nombre";
@@ -254,7 +263,7 @@ namespace SaludDental
 
         private void cboDepartamento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            INegocioMaestro negocio = new NegocioMaestro(new RepositorioMaestroADO());
+            INegocioMaestro negocio = new NegocioMaestro();
             var departamento = cboDepartamento.SelectedItem as Departamento;
             if (cboDepartamento.SelectedItem != null)
             {

@@ -18,7 +18,8 @@ namespace Modelo
         public DateTime FechaNacimiento { get; set; }
         public bool Titular { get; set; }
         public string Telefono { get; set; }
-        public string Direcion { get; set; }
+        public string Celular { get; set; }
+        public string Direccion { get; set; }
         public decimal Salario { get; set; }
         public int IdCiudad { get; set; }
         public virtual Ciudad Ciudad { get; set; }
