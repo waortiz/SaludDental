@@ -68,6 +68,7 @@ namespace SaludDental
                     paciente.SegundoApellido = segundoApellido;
                     paciente.TipoDocumento = tipoDocumento;
                     paciente.NumeroDocumento = txtNumeroDocumento.Text;
+                    paciente.FechaNacimiento = fechaNacimiento;
                     paciente.Sexo = new Sexo() { Id = sexo };
                     paciente.Direccion = direccion;
                     paciente.Ciudad = ciudad;
